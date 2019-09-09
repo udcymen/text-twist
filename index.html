@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css"></script>
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+
+    <title>Exercise 1</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-sm bg-light">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Example 1 website</a>
+        </div>
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="#">Link 1</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Link 2</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Link 3</a>
+            </li>
+        </ul>
+    </nav>
+    <div class='container'>
+        <p>
+            <form id='nameform'>
+                <div class='form-group'>
+                    <label for='fname'>First Name:</label>
+                    <input id='fname' type='text' class='form-control' required>
+                </div>
+                <div class='form-group'>
+                    <label for='lname'>Last Name:</label>
+                    <input id='lname' type='text' class='form-control' required>
+                </div>
+                <input type='submit' id='go' class='btn btn-danger' value='Make It So'>
+            </form>
+        </p>
+        <div class='jumbotron text-center d-none'>
+            <h1>Boo</h1>
+        </div>
+    </div>
+
+    <h1>Spot The Bingo</h1>
+    <button id="grabmore">Fetch 10 Bingos</button>
+    <ul id="bingos"></ul>
+
+    <script src="index.js"></script>
+</body>
+
+</html>
