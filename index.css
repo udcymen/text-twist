@@ -8,12 +8,12 @@ body {
 
 #content {
 	position: absolute;
-	top: 10%;
+	top: 35%;
 	bottom: 10%;
-	height: 80%;
-	left: 35%;
+	height: 60%;
+	left: 25%;
 	right: 20%;
-	width: 60%;
+	width: 50%;
 	background-color: rgba(0,26,52,0.5);
 	border: solid white;
 	border-radius: 20px;
@@ -54,17 +54,24 @@ body {
 
 .title {
 	position: absolute;
-	top: 15%;
+	top: 8%;
 	height: 10%;
 	width: 100%;
 }
 
 .title-text{
-  text-transform: uppercase;
+  /* text-transform: uppercase;
 	font-family: "Comic Sans MS", cursive, sans-serif;
-	color: rgba(12, 10, 11, 0.924);
+	color: rgba(235, 239, 241, 0.924);
 	font-size: calc(80px + 2vh);
-	margin: 0 auto;
+	margin: 0 auto; */
+	
+	color: white;
+    font: 900 15vmin/20vh cookie, cursive;
+    text-align: center;
+    filter: drop-shadow(.05em .05em orange);
+	mix-blend-mode: difference;
+	margin: auto;
 }
 
 .title button{
@@ -72,13 +79,20 @@ body {
 }
 
 #timer{
-  font-size: calc(80px + 2vh);
+  font-size: calc(50px + 2vh);
   font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+  top: 80%;
   color: aqua;
 }
 
 #select {
-  font-size: calc(80px + 2vh);
+  font-size: calc(30px + 2vh);
   color: wheat;
   
+}
+
+#guessWord{
+	top: 30%;
+	font-family: Impact, Charcoal, sans-serif;
+	font-size: calc(30px + 2vh);
 }
