@@ -1,9 +1,7 @@
 $(function () {
     var answers = [];
 
-
     let start_game = function (data) {
-        $("#startBtn").attr("disabled", true);
 
         $("#content").removeClass("d-none");
 
@@ -27,6 +25,7 @@ $(function () {
     }
 
     $("#startBtn").on("click", function () {
+        $("#startBtn").attr("disabled", true);
 
         $.ajax({
             method: "GET",
@@ -53,10 +52,10 @@ $(function () {
                 //location.reload();
             }
 
-            if (regex.test(guess)) {
-                if (answers.includes(guess)){
-                    answers.splice(answers.indexOf(guess), 1);
-                    $("#guessWord").append(guess.toUpperCase()).append("<br>");
+            if (regex.test(guess)) { 
+                if (answers.includes(sha256(guess))){
+                    answers.splice(answers.indexOf(sha256(guess)), 1);
+                    $("#guessWord").append($("#guess").val().toUpperCase()).append("<br>");
                     $('#guess').attr("placeholder", answers.length + " words left");
                 }
             }
