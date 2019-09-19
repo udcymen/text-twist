@@ -2,7 +2,6 @@ $(function () {
     var answers = [];
 
     let start_game = function (data) {
-        $("#startBtn").attr("disabled", true);
 
         $("#content").removeClass("d-none");
 
@@ -26,6 +25,7 @@ $(function () {
     }
 
     $("#startBtn").on("click", function () {
+        $("#startBtn").attr("disabled", true);
 
         $.ajax({
             method: "GET",
