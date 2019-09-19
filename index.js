@@ -1,49 +1,38 @@
 $(function () {
+    var answers = [];
 
-    var source = "";
 
-    let showRacks = function (racks) {
-        $("#bingos").html('');
-        racks.map(rack => {
-            $("#bingos").append(`<li>${rack.rack}: <span class="answer d-none">${rack.words}</span></li>`);
-        });
-        $("#bingos li").on("click", function (evt) {
-            $(evt.currentTarget).find(".answer").toggleClass("d-none");
-        });
-    }
+    let start_game = function (data) {
+        $("#startBtn").attr("disabled", true);
 
-    $("#startBtn").on("click", function () {
+        $("#content").removeClass("d-none");
+
+        for (let i = 0; i < data[0].rack.length; i++) {
+            $("#select").append("<text class='mx-3'>" + data[0].rack[i] + "</text>");
+        }
+        
+        answers = data[0].words;
 
         var count = 120;
-
-        var counter = setInterval(timer, 1000);
-        function timer() {
+        var counter = setInterval(function (){
             count = count - 1;
             $("#timer").html("Time left: " + count + " secs");
             if (count <= 0) {
                 clearInterval(counter);
-                alert("you are out. Please start again.");
+                alert("Game Over");
                 location.reload();
-                // $(".title").removeClass("d-none");
-                //$("#content").addClass("d-none");
                 return;
             }
-        }
-        $("#content").removeClass("d-none");
+        }, 1000);
+    }
 
-        $("#startBtn").attr("disabled", true);
+    $("#startBtn").on("click", function () {
 
-        function makeid() {
-            var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-
-            return characters.charAt(Math.floor(Math.random() * characters.length));
-        }
-
-        for (var i = 0; i < 6; i++) {
-            var letter = makeid();
-            source += letter;
-            $("#select").append(letter);
-        }
+        $.ajax({
+            method: "GET",
+            url: "http://localhost:80/text-twist/api.php",
+            success: data => { start_game(data) }
+        });
     });
 
     $('#reset').click(function() {
@@ -51,31 +40,25 @@ $(function () {
     });
 
     $("#guess").on('keypress', function (evt) {
-        
-        function isNumeric(t) {
-            var regex = /\d/g;
-            return regex.test(t);
-        }
         if (evt.which == 13) {
-            evt.preventDefault();
-            if (isNumeric(evt.currentTarget.value)) {
+            
+            let regex = /^[a-zA-Z]*$/;
+            let guess = $("#guess").val().toUpperCase();
+            
+            if (regex.test(guess)) {
+                if (answers.includes(guess)){
+                    answers.splice(answers.indexOf(guess), 1);
+                    $("#guessWord").append(guess.toUpperCase()).append("<br>");
+                }
+            }
+            else{
                 alert('Please enter only letters.');
             }
-            else
-                $("#guessWord").append(evt.currentTarget.value.toUpperCase()).append("<br>");
 
-            //alert(evt.currentTarget.value);
             $("#guess").val("");
+
+            evt.preventDefault();
             return false;
         }
     });
-
-    $("#grabmore").on("click", function () {
-        $.ajax({
-            method: "GET",
-            url: "http://localhost:8080/text-twist/api.php",
-            success: data => { showRacks(data) }
-        });
-    });
-
 });
