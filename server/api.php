@@ -56,8 +56,16 @@
             $possible_answer = array_merge($possible_answer, explode("@@",$possible_results[0]['words']));
         }
     }
-    
-    $results[0]["words"] = array_values(array_unique($possible_answer + explode("@@",$results[0]["words"])));
+
+    // Remove Dulipcates
+    $possible_answer = array_values(array_unique($possible_answer + explode("@@",$results[0]["words"])));
+
+    // Encript Answers
+    for ($i = 0; $i < count($possible_answer); $i++){
+        $possible_answer[$i] = hash("sha256", $possible_answer[$i]);
+    }
+
+    $results[0]["words"] = $possible_answer;
 
     //this part is perhaps overkill but I wanted to set the HTTP headers and status code
     //making to this line means everything was great with this request
@@ -65,6 +73,7 @@
     //this lets the browser know to expect json
     header('Content-Type: application/json');
 
+    // Allow CORS
     header ("Access-Control-Allow-Origin: *");
     header ("Access-Control-Expose-Headers: Content-Length, X-JSON");
     header ("Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS");

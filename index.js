@@ -1,7 +1,6 @@
 $(function () {
     var answers = [];
 
-
     let start_game = function (data) {
         $("#startBtn").attr("disabled", true);
 
@@ -46,9 +45,9 @@ $(function () {
             let guess = $("#guess").val().toUpperCase();
             
             if (regex.test(guess)) {
-                if (answers.includes(guess)){
-                    answers.splice(answers.indexOf(guess), 1);
-                    $("#guessWord").append(guess.toUpperCase()).append("<br>");
+                if (answers.includes(sha256(guess))){
+                    answers.splice(answers.indexOf(sha256(guess)), 1);
+                    $("#guessWord").append($("#guess").val().toUpperCase()).append("<br>");
                 }
             }
             else{
