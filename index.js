@@ -39,16 +39,25 @@ $(function () {
         location.reload();
     });
 
+
     $("#guess").on('keypress', function (evt) {
         if (evt.which == 13) {
             
             let regex = /^[a-zA-Z]*$/;
             let guess = $("#guess").val().toUpperCase();
-            
+            if(answers.length == 0){
+                $('#modalInfosucess').modal('toggle');
+                $('.reset').click(function() {
+                    location.reload();
+                });
+                //location.reload();
+            }
+
             if (regex.test(guess)) {
                 if (answers.includes(guess)){
                     answers.splice(answers.indexOf(guess), 1);
                     $("#guessWord").append(guess.toUpperCase()).append("<br>");
+                    $('#guess').attr("placeholder", answers.length + " words left");
                 }
             }
             else{
@@ -57,8 +66,12 @@ $(function () {
 
             $("#guess").val("");
 
+            
             evt.preventDefault();
             return false;
         }
+        
     });
+
+    
 });
