@@ -30,7 +30,7 @@ $(function () {
 
         $.ajax({
             method: "GET",
-            url: "http://localhost:80/text-twist/api.php",
+            url: "https://banana-pear.herokuapp.com/api.php",
             success: data => { start_game(data) }
         });
     });
