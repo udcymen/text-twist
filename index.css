@@ -99,4 +99,13 @@ body {
 	top: 30%;
 	font-family: Impact, Charcoal, sans-serif;
 	font-size: calc(30px + 2vh);
+	-moz-column-fill: auto; /* Firefox */
+  column-fill: auto;
+}
+
+.Point{
+	font-size: calc(50px + 2vh);
+	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	/* top: 80%; */
+	color: aqua;
 }
