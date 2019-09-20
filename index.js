@@ -29,7 +29,7 @@ $(function () {
 
         $.ajax({
             method: "GET",
-            url: "https://banana-pear.herokuapp.com/api.php",
+            url: "server/api.php",
             success: data => { start_game(data) }
         });
     });
@@ -49,7 +49,6 @@ $(function () {
                 $('.reset').click(function() {
                     location.reload();
                 });
-                //location.reload();
             }
 
             if (regex.test(guess)) { 
@@ -64,7 +63,6 @@ $(function () {
             }
 
             $("#guess").val("");
-
             
             evt.preventDefault();
             return false;

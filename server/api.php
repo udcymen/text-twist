@@ -74,10 +74,10 @@
     header('Content-Type: application/json');
 
     // Allow CORS
-    header ("Access-Control-Allow-Origin: *");
-    header ("Access-Control-Expose-Headers: Content-Length, X-JSON");
-    header ("Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS");
-    header ("Access-Control-Allow-Headers: *");
+    // header ("Access-Control-Allow-Origin: *");
+    // header ("Access-Control-Expose-Headers: Content-Length, X-JSON");
+    // header ("Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS");
+    // header ("Access-Control-Allow-Headers: *");
 
     //this creates json and gives it back to the browser
     echo json_encode($results);
